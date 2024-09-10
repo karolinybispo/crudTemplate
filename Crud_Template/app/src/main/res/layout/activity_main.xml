@@ -1,0 +1,38 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <!-- Campo para inserir o nome do contato -->
+    <EditText
+        android:id="@+id/editTextNomeContato"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Nome do Contato"
+        android:inputType="textPersonName" />
+
+    <!-- Campo para Telefone -->
+    <EditText
+        android:id="@+id/editTextTelefone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Telefone do Contato"
+        android:inputType="phone"/>
+
+    <!-- Botão para Salvar Contato -->
+    <Button
+        android:id="@+id/buttonSalvar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Salvar Contato"/>
+
+    <!-- Botão para Ver Contatos -->
+    <Button
+        android:id="@+id/buttonVerContatos"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Ver Contatos"
+        android:layout_marginTop="16dp"/>
+</LinearLayout>
