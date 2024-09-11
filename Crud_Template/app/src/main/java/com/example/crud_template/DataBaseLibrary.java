@@ -7,16 +7,12 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class DataBaseLibrary extends SQLiteOpenHelper {
 
-
-    // Classe responsável por gerenciar o banco de dados SQLite
-
-
     // Nome e versão do banco de dados
-    private static final String DATABASE_NAME = "contatos.db";
+    private static final String DATABASE_NAME = "biblioteca.db";
     private static final int DATABASE_VERSION = 1;
 
-    // Nome da tabela que armazenará os contatos
-    private static final String TABLE_CONTATOS = "contatos";
+    // Nome da tabela que armazenará os livros
+    private static final String TABLE_LIVROS = "livros";
 
     // Construtor da classe DataBaseLibrary
     public DataBaseLibrary(Context context) {
@@ -26,11 +22,11 @@ public class DataBaseLibrary extends SQLiteOpenHelper {
     // Método chamado quando o banco de dados é criado pela primeira vez
     @Override
     public void onCreate(SQLiteDatabase db) {
-        // SQL para criar a tabela de contatos
-        String CREATE_TABLE = "CREATE TABLE " + TABLE_CONTATOS + "("
+        // SQL para criar a tabela de livros
+        String CREATE_TABLE = "CREATE TABLE " + TABLE_LIVROS + "("
                 + "id INTEGER PRIMARY KEY AUTOINCREMENT," // Coluna de ID (chave primária)
-                + "nome TEXT," // Coluna para o nome do contato
-                + "telefone TEXT" // Coluna para o telefone do contato
+                + "titulo TEXT," // Coluna para o título do livro
+                + "autor TEXT" // Coluna para o autor do livro
                 + ")";
         db.execSQL(CREATE_TABLE); // Executa o comando SQL para criar a tabela
     }
@@ -39,28 +35,25 @@ public class DataBaseLibrary extends SQLiteOpenHelper {
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         // Apaga a tabela antiga e cria uma nova
-        db.execSQL("DROP TABLE IF EXISTS " + TABLE_CONTATOS);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_LIVROS);
         onCreate(db);
     }
 
-    // Método para adicionar um novo contato ao banco de dados
-    public boolean addContato(String nome, String telefone) {
+    // Método para adicionar um novo livro ao banco de dados
+    public boolean addLivro(String titulo, String autor) {
         SQLiteDatabase db = this.getWritableDatabase(); // Obtém o banco de dados em modo de escrita
-        ContentValues values = new ContentValues(); // Objeto para armazenar os valores das colunas
-        values.put("nome", nome); // Adiciona o nome ao ContentValues
-        values.put("telefone", telefone); // Adiciona o telefone ao ContentValues
-
-        // Insere o novo contato na tabela de contatos
-        long result = db.insert(TABLE_CONTATOS, null, values);
-        db.close(); // Fecha a conexão com o banco de dados
-        return result != -1; // Retorna true se a inserção foi bem-sucedida, caso contrário false
+        ContentValues contentValues = new ContentValues(); // Objeto para armazenar os valores a serem inseridos
+        contentValues.put("titulo", titulo); // Insere o título do livro
+        contentValues.put("autor", autor); // Insere o nome do autor
+        long result = db.insert(TABLE_LIVROS, null, contentValues); // Insere os dados na tabela
+        db.close(); // Fecha o banco de dados
+        return result != -1; // Se o resultado for -1, houve erro ao inserir
     }
 
-    // Método para obter todos os contatos armazenados no banco de dados
-    public Cursor getAllContatos() {
+    // Método para buscar todos os livros cadastrados
+    public Cursor getAllLivros() {
         SQLiteDatabase db = this.getReadableDatabase(); // Obtém o banco de dados em modo de leitura
-        return db.rawQuery("SELECT * FROM " + TABLE_CONTATOS, null); // Executa a query para obter todos os contatos
-
+        return db.rawQuery("SELECT * FROM " + TABLE_LIVROS, null); // Executa a query para buscar todos os livros
     }
 }
 

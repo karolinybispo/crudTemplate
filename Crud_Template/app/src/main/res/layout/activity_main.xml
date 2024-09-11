@@ -5,34 +5,33 @@
     android:orientation="vertical"
     android:padding="16dp">
 
-    <!-- Campo para inserir o nome do contato -->
+    <!-- Campo para inserir o título do livro -->
     <EditText
-        android:id="@+id/editTextNomeContato"
+        android:id="@+id/editTextTitulo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Nome do Contato"
-        android:inputType="textPersonName" />
+        android:hint="Título do Livro"
+        android:inputType="text"/>
 
-    <!-- Campo para Telefone -->
+    <!-- Campo para inserir o autor do livro -->
     <EditText
-        android:id="@+id/editTextTelefone"
+        android:id="@+id/editTextAutor"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Telefone do Contato"
-        android:inputType="phone"/>
+        android:hint="Autor do Livro"
+        android:inputType="text"/>
 
-    <!-- Botão para Salvar Contato -->
+    <!-- Botão para Salvar o Livro -->
     <Button
         android:id="@+id/buttonSalvar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Salvar Contato"/>
+        android:text="Salvar Livro"
+        android:layout_marginTop="16dp"/>
 
-    <!-- Botão para Ver Contatos -->
-    <Button
-        android:id="@+id/buttonVerContatos"
+        <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewLivros"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Ver Contatos"
         android:layout_marginTop="16dp"/>
-</LinearLayout>
+            </LinearLayout>
